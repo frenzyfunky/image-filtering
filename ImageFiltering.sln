@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageFiltering", "ImageFiltering\ImageFiltering.csproj", "{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageFiltering.Service", "ImageFiltering.Service\ImageFiltering.Service.csproj", "{E61C30FE-053B-4958-94A5-F865C53C9859}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E61C30FE-053B-4958-94A5-F865C53C9859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E61C30FE-053B-4958-94A5-F865C53C9859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E61C30FE-053B-4958-94A5-F865C53C9859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E61C30FE-053B-4958-94A5-F865C53C9859}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E0C43EC-9595-439E-BDDA-B555B5D08091}
+	EndGlobalSection
+EndGlobal
