@@ -6,6 +6,13 @@ namespace ImageFiltering.Service.Filters
 {
     public enum FilterEnum
     {
-        MedianFilter
+        MedianFilter,
+        BoxFilter,
+        WeightedMedianFilter,
+        WeightedBoxFilter,
+        ClippedMean,
+        ClippedMeanOverWeightedMedianFilter,
+        WeightedMedianOverClippedMeanFilter,
+        Sobel
     }
 }

@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageFiltering", "ImageFiltering\ImageFiltering.csproj", "{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageFiltering.Service", "ImageFiltering.Service\ImageFiltering.Service.csproj", "{E61C30FE-053B-4958-94A5-F865C53C9859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageFiltering.Service", "ImageFiltering.Service\ImageFiltering.Service.csproj", "{E61C30FE-053B-4958-94A5-F865C53C9859}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageFiltering.Api", "ImageFiltering.Api\ImageFiltering.Api.csproj", "{DAC0C353-35EB-4017-90AE-036AA76AAA3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageFiltering.Application", "ImageFiltering.Application\ImageFiltering.Application.csproj", "{DCFF1B47-E35B-44F9-A422-D852115D365C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCE69A3C-63CF-4422-8CAC-F1590DDFF2DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E61C30FE-053B-4958-94A5-F865C53C9859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E61C30FE-053B-4958-94A5-F865C53C9859}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E61C30FE-053B-4958-94A5-F865C53C9859}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E61C30FE-053B-4958-94A5-F865C53C9859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAC0C353-35EB-4017-90AE-036AA76AAA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAC0C353-35EB-4017-90AE-036AA76AAA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAC0C353-35EB-4017-90AE-036AA76AAA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAC0C353-35EB-4017-90AE-036AA76AAA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCFF1B47-E35B-44F9-A422-D852115D365C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCFF1B47-E35B-44F9-A422-D852115D365C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCFF1B47-E35B-44F9-A422-D852115D365C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCFF1B47-E35B-44F9-A422-D852115D365C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ImageFiltering.Application\ImageFiltering.Application.csproj" />
+    <ProjectReference Include="..\ImageFiltering.Service\ImageFiltering.Service.csproj" />
+  </ItemGroup>
+
+
+</Project>
