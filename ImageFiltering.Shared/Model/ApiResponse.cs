@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ImageFiltering.Api.Model
+namespace ImageFiltering.Shared.Model
 {
     public class ApiResponse<T>
     {

@@ -1,11 +1,13 @@
-﻿using System;
-using System.Drawing;
+﻿using ImageFiltering.Service.Helpers;
 using MathNet.Numerics.Statistics;
-using ImageFiltering.Service.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Text;
 
 namespace ImageFiltering.Service.Filters
 {
-    internal class MedianFilter : IFilter
+    internal class BoxFilterSharpening : IFilter
     {
         private readonly Bitmap _originalImage;
         private readonly int _filterSize;
@@ -14,7 +16,7 @@ namespace ImageFiltering.Service.Filters
         private readonly Bitmap _greyscaleImg;
         private int[,] _intensityValues;
 
-        internal MedianFilter(Bitmap originalImage, int filterSize, BoundaryEnum boundaryCondition, int iterationCount)
+        internal BoxFilterSharpening(Bitmap originalImage, int filterSize, BoundaryEnum boundaryCondition, int iterationCount)
         {
             _originalImage = originalImage;
             _filterSize = filterSize;
@@ -39,7 +41,7 @@ namespace ImageFiltering.Service.Filters
             return _greyscaleImg;
         }
 
-        private void ApplyFilteredValuesToImage(int[,] filteredIntensityValues) 
+        private void ApplyFilteredValuesToImage(int[,] filteredIntensityValues)
         {
             for (int i = 0; i < _originalImage.Height; i++)
             {
@@ -77,20 +79,23 @@ namespace ImageFiltering.Service.Filters
                         continue;
                     }
 
-                    double[] medianArr = new double[filter.Length];
-                    int medianCounter = 0;
+                    double[] boxFilterArr = new double[filter.Length];
+                    int counter = 0;
 
                     for (int k = 0; k < filterHeight; k++)
                     {
                         for (int m = 0; m < filterWidth; m++)
                         {
-                            medianArr[medianCounter] = _intensityValues[i + (k - (int)Math.Floor((double)filterHeight / 2)), j + (m - (int)Math.Floor((double)filterWidth / 2))];
-                            medianCounter += 1;
+                            boxFilterArr[counter] = _intensityValues[i + (k - (int)Math.Floor((double)filterHeight / 2)), j + (m - (int)Math.Floor((double)filterWidth / 2))];
+                            counter += 1;
                         }
                     }
-                    var median = (int)medianArr.Median();
+                    var mean = (int)boxFilterArr.Mean();
+                    var constant = (int)boxFilterArr[origin * 2 + 1] * 2;
 
-                    filteredValues[i, j] = median;
+                    mean = Math.Clamp(constant - mean, 0, 255);
+
+                    filteredValues[i, j] = mean;
                 }
             }
 

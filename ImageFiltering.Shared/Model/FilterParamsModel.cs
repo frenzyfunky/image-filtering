@@ -1,9 +1,9 @@
-﻿using ImageFiltering.Api.Model.ModelBinder;
-using ImageFiltering.Service.Filters;
+﻿using ImageFiltering.Service.Filters;
+using ImageFiltering.Shared.Model.ModelBinder;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace ImageFiltering.Api.Model
+namespace ImageFiltering.Shared.Model
 {
     public class FilterParamsModel
     {
@@ -15,5 +15,7 @@ namespace ImageFiltering.Api.Model
         public BoundaryEnum BoundaryCondition { get; set; }
         [Required]
         public int IterationCount { get; set; }
+        public int ClippedMeanRangeRatio { get; set; }
+        public bool SobelIsVertical { get; set; }
     }
 }

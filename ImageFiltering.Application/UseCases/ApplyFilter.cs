@@ -1,5 +1,6 @@
 ﻿using ImageFiltering.Service;
 using ImageFiltering.Service.Filters;
+using ImageFiltering.Shared.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,10 +19,10 @@ namespace ImageFiltering.Application.UseCases
             _imageLoader = imageLoader;
         }
 
-        byte[] IApplyFilter.ApplyFilter(byte[] image, FilterEnum filterType, int kernelSize, BoundaryEnum boundaryCondition, int iterationCount)
+        byte[] IApplyFilter.ApplyFilter(FilterParamsModel filterParams)
         {
-            var imageManuplations = _imageLoader.LoadImage(image);
-            var filter = imageManuplations.GetFilter(filterType, kernelSize);
+            var imageManuplations = _imageLoader.LoadImage(filterParams.Image);
+            var filter = imageManuplations.GetFilter(filterParams);
 
             var filteredImage = filter.Apply();
             return ConvertBmpToBytes(filteredImage);

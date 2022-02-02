@@ -1,4 +1,5 @@
 ﻿using ImageFiltering.Service.Filters;
+using ImageFiltering.Shared.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,12 +18,15 @@ namespace ImageFiltering.Service
 
         public void SetOriginalImage(Bitmap image) => _originalImage = image;
 
-        public IFilter GetFilter(FilterEnum filter, int filterSize)
+        public IFilter GetFilter(FilterParamsModel filterParams)
         {
-            var selectedFilter = filter switch
+            IFilter selectedFilter = filterParams.FilterType switch
             {
-                FilterEnum.MedianFilter => new MedianFilter(_originalImage, filterSize),
-                _ => throw new ArgumentOutOfRangeException(nameof(filter))
+                FilterEnum.MedianFilter => new MedianFilter(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount),
+                FilterEnum.BoxFilterSmoothing => new BoxFilterSmoothing(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount),
+                FilterEnum.BoxFilterSharpening => new BoxFilterSharpening(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount),
+                FilterEnum.Sobel => new SobelFilter(_originalImage, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.SobelIsVertical),
+                _ => throw new ArgumentOutOfRangeException(nameof(filterParams.FilterType))
             };
 
             return selectedFilter;

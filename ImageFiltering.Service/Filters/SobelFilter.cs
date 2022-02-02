@@ -1,25 +1,28 @@
-﻿using System;
+﻿using ImageFiltering.Service.Helpers;
+using ImageFiltering.Shared.Constants;
+using System;
 using System.Drawing;
-using MathNet.Numerics.Statistics;
-using ImageFiltering.Service.Helpers;
+using System.Linq;
 
 namespace ImageFiltering.Service.Filters
 {
-    internal class MedianFilter : IFilter
+    internal class SobelFilter : IFilter
     {
         private readonly Bitmap _originalImage;
         private readonly int _filterSize;
         private readonly BoundaryEnum _boundaryCondition;
         private readonly int _iterationCount;
+        private readonly bool _isVertical;
         private readonly Bitmap _greyscaleImg;
         private int[,] _intensityValues;
 
-        internal MedianFilter(Bitmap originalImage, int filterSize, BoundaryEnum boundaryCondition, int iterationCount)
+        internal SobelFilter(Bitmap originalImage, BoundaryEnum boundaryCondition, int iterationCount, bool isVertical)
         {
             _originalImage = originalImage;
-            _filterSize = filterSize;
+            _filterSize = 3;
             _boundaryCondition = boundaryCondition;
             _iterationCount = iterationCount;
+            _isVertical = isVertical;
             _greyscaleImg = new Bitmap(originalImage.Width, originalImage.Height, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
             _intensityValues = new int[originalImage.Height, originalImage.Width];
         }
@@ -39,7 +42,7 @@ namespace ImageFiltering.Service.Filters
             return _greyscaleImg;
         }
 
-        private void ApplyFilteredValuesToImage(int[,] filteredIntensityValues) 
+        private void ApplyFilteredValuesToImage(int[,] filteredIntensityValues)
         {
             for (int i = 0; i < _originalImage.Height; i++)
             {
@@ -58,8 +61,8 @@ namespace ImageFiltering.Service.Filters
             int imageWidth = _originalImage.Width;
             int imageHeight = _originalImage.Height;
 
-            int filterHeight = filter.GetLength(0);
-            int filterWidth = filter.GetLength(1);
+            int filterHeight = 3;
+            int filterWidth = 3;
 
             int[,] filteredValues = new int[imageHeight, imageWidth];
             int origin = (int)Math.Ceiling((double)filterHeight / 2);
@@ -77,20 +80,22 @@ namespace ImageFiltering.Service.Filters
                         continue;
                     }
 
-                    double[] medianArr = new double[filter.Length];
-                    int medianCounter = 0;
+                    double[] sobelFilterArr = new double[filter.Length];
+                    int counter = 0;
 
                     for (int k = 0; k < filterHeight; k++)
                     {
                         for (int m = 0; m < filterWidth; m++)
                         {
-                            medianArr[medianCounter] = _intensityValues[i + (k - (int)Math.Floor((double)filterHeight / 2)), j + (m - (int)Math.Floor((double)filterWidth / 2))];
-                            medianCounter += 1;
+                            int value = _isVertical ? SobelConstants.VerticalSobelKernel[k, m] : SobelConstants.HorizontalSobelKernel[k, m];
+
+                            sobelFilterArr[counter] = _intensityValues[i + (k - (int)Math.Floor((double)filterHeight / 2)), j + (m - (int)Math.Floor((double)filterWidth / 2))] * value;
+                            counter += 1;
                         }
                     }
-                    var median = (int)medianArr.Median();
+                    var sum = Math.Clamp((int)sobelFilterArr.Sum(), 0, 255);
 
-                    filteredValues[i, j] = median;
+                    filteredValues[i, j] = sum;
                 }
             }
 

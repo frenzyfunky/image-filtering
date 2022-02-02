@@ -1,4 +1,5 @@
 ﻿using ImageFiltering.Service.Filters;
+using ImageFiltering.Shared.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,6 +9,6 @@ namespace ImageFiltering.Application.UseCases
 {
     public interface IApplyFilter
     {
-        byte[] ApplyFilter(byte[] image, FilterEnum filterType, int kernelSize, BoundaryEnum boundaryCondition, int iterationCount);
+        byte[] ApplyFilter(FilterParamsModel filterParams);
     }
 }

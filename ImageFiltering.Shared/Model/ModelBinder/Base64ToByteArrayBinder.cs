@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ImageFiltering.Api.Model.ModelBinder
+namespace ImageFiltering.Shared.Model.ModelBinder
 {
     public class Base64ToByteArrayBinder : IModelBinder
     {
