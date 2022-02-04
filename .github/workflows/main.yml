@@ -1,0 +1,37 @@
+name: .NET app deploy to Heroku
+
+on:
+  push:
+    branches: [master]
+    paths:
+    - 'ImageFiltering.Api'
+    - 'ImageFiltering.Application'
+    - 'ImageFiltering.Service'
+    - 'ImageFiltering.Shared'
+  pull_request:
+    branches: [master]
+    paths:
+    - 'ImageFiltering.Api'
+    - 'ImageFiltering.Application'
+    - 'ImageFiltering.Service'
+    - 'ImageFiltering.Shared'
+
+env:
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  APP_NAME: ${{ 'image-filtering-api' }}
+  
+jobs:
+ deploy:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+     
+    - name: Login to Heroku container registery
+      run: heroku container:login
+     
+    - name: Build and push
+      run: heroku container:push -a $APP_NAME --context-path . --recursive
+      
+    - name: Release
+      run: heroku container:release -a $APP_NAME web
