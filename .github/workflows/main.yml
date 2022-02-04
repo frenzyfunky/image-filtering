@@ -3,18 +3,13 @@ name: .NET app deploy to Heroku
 on:
   push:
     branches: [master]
-    paths:
-    - 'ImageFiltering.Api/**'
-    - 'ImageFiltering.Application/**'
-    - 'ImageFiltering.Service/**'
-    - 'ImageFiltering.Shared/**'
+    paths-ignore:
+    - 'client/**'
+
   pull_request:
     branches: [master]
-    paths:
-    - 'ImageFiltering.Api/**'
-    - 'ImageFiltering.Application/**'
-    - 'ImageFiltering.Service/**'
-    - 'ImageFiltering.Shared/**'
+    paths-ignore:
+    - 'client/**'
 
 env:
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
