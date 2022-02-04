@@ -4,17 +4,17 @@ on:
   push:
     branches: [master]
     paths:
-    - 'ImageFiltering.Api'
-    - 'ImageFiltering.Application'
-    - 'ImageFiltering.Service'
-    - 'ImageFiltering.Shared'
+    - 'ImageFiltering.Api/**'
+    - 'ImageFiltering.Application/**'
+    - 'ImageFiltering.Service/**'
+    - 'ImageFiltering.Shared/**'
   pull_request:
     branches: [master]
     paths:
-    - 'ImageFiltering.Api'
-    - 'ImageFiltering.Application'
-    - 'ImageFiltering.Service'
-    - 'ImageFiltering.Shared'
+    - 'ImageFiltering.Api/**'
+    - 'ImageFiltering.Application/**'
+    - 'ImageFiltering.Service/**'
+    - 'ImageFiltering.Shared/**'
 
 env:
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
