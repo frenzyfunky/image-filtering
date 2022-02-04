@@ -30,9 +30,9 @@ export const retrieveFilteredImage =
 
       try {
          const response = await axios.post<ApiResponse>(
-            'https://localhost:5001/api/filter',
+            process.env.NEXT_PUBLIC_API_URL as string,
             { ...params, image: loadedImage }
-         ); //TODO change URL
+         );
 
          dispatch({
             type: ActionTypes.RETRIEVE_FILTERED_IMAGE,
