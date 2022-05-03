@@ -17,6 +17,6 @@ namespace ImageFiltering.Shared.Model
         public int IterationCount { get; set; }
         public int ClippedMeanRangeRatio { get; set; }
         public bool SobelIsVertical { get; set; }
-        public double Threshold { get; set; }
+        public double? Threshold { get; set; }
     }
 }

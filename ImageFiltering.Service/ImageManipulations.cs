@@ -27,9 +27,9 @@ namespace ImageFiltering.Service
                 FilterEnum.BoxFilterSharpening => new BoxFilterSharpening(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount),
                 FilterEnum.Sobel => new SobelFilter(_originalImage, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.SobelIsVertical),
                 FilterEnum.WeightedMedianFilter => new WeightedMedian(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount),
-                FilterEnum.ClippedMean => new ClippedMean(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.Threshold),
-                FilterEnum.ClippedMeanOverWeightedMedianFilter => new ClippedMeanOverWeightedMedian(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.Threshold),
-                FilterEnum.WeightedMedianOverClippedMeanFilter => new WeightedMedianOverClippedMean(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.Threshold),
+                FilterEnum.ClippedMean => new ClippedMean(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.Threshold.GetValueOrDefault()),
+                FilterEnum.ClippedMeanOverWeightedMedianFilter => new ClippedMeanOverWeightedMedian(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.Threshold.GetValueOrDefault()),
+                FilterEnum.WeightedMedianOverClippedMeanFilter => new WeightedMedianOverClippedMean(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.Threshold.GetValueOrDefault()),
                 _ => throw new ArgumentOutOfRangeException(nameof(filterParams.FilterType))
             };
 
