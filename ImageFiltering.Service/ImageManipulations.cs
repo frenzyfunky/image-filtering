@@ -26,6 +26,10 @@ namespace ImageFiltering.Service
                 FilterEnum.BoxFilterSmoothing => new BoxFilterSmoothing(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount),
                 FilterEnum.BoxFilterSharpening => new BoxFilterSharpening(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount),
                 FilterEnum.Sobel => new SobelFilter(_originalImage, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.SobelIsVertical),
+                FilterEnum.WeightedMedianFilter => new WeightedMedian(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount),
+                FilterEnum.ClippedMean => new ClippedMean(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.Threshold),
+                FilterEnum.ClippedMeanOverWeightedMedianFilter => new ClippedMeanOverWeightedMedian(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.Threshold),
+                FilterEnum.WeightedMedianOverClippedMeanFilter => new WeightedMedianOverClippedMean(_originalImage, filterParams.KernelSize, filterParams.BoundaryCondition, filterParams.IterationCount, filterParams.Threshold),
                 _ => throw new ArgumentOutOfRangeException(nameof(filterParams.FilterType))
             };
 

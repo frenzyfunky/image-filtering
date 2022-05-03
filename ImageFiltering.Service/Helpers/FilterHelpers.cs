@@ -18,5 +18,44 @@ namespace ImageFiltering.Service.Helpers
                 }
             }
         }
+
+        public static int[,] GetGaussianKernel(int length, double weight)
+        {
+            double[,] kernel = new double[length, length];
+            int[,] discreteKernel = new int[length, length];
+
+            double kernelSum = 0;
+            int foff = (length - 1) / 2;
+            double distance = 0;
+            double constant = 1d / (2 * Math.PI * weight * weight);
+            for (int y = -foff; y <= foff; y++)
+            {
+                for (int x = -foff; x <= foff; x++)
+                {
+                    distance = ((y * y) + (x * x)) / (2 * weight * weight);
+                    kernel[y + foff, x + foff] = constant * Math.Exp(-distance);
+                    kernelSum += kernel[y + foff, x + foff];
+                }
+            }
+            for (int y = 0; y < length; y++)
+            {
+                for (int x = 0; x < length; x++)
+                {
+                    kernel[y, x] = kernel[y, x] * 1d / kernelSum;
+                }
+            }
+
+            double coefficient = 1 / kernel[0, 0];
+
+            for (int y = 0; y < length; y++)
+            {
+                for (int x = 0; x < length; x++)
+                {
+                    discreteKernel[y, x] = (int)Math.Ceiling(kernel[y, x] * coefficient);
+                }
+            }
+
+            return discreteKernel;
+        }
     }
 }
