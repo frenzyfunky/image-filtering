@@ -16,6 +16,7 @@ const SideBar = () => {
             filterType: parseInt(values.filterType),
             kernelSize: parseInt(values.kernelSize),
             sobelIsVertical: values.isVertical === 'true',
+            threshold: parseFloat(values.threshold)
          })
       );
    };
@@ -72,15 +73,12 @@ const SideBar = () => {
                                        <option value={4}>
                                           Ağırlıklı Medyan
                                        </option>
-                                       <option value={5}>
-                                          Ağırlıklı Box Filtre
-                                       </option>
                                        <option value={6}>Clipped-Mean</option>
                                        <option value={7}>
-                                          Clipped-Mean+Ağırlıklı Medyan
+                                          Ağırlıklı Medyan+Clipped-Mean
                                        </option>
                                        <option value={8}>
-                                          Ağırlıklı Medyan+Clipped-Mean
+                                          Clipped-Mean+Ağırlıklı Medyan
                                        </option>
                                     </select>
                                     {meta.error && meta.touched && (
@@ -196,6 +194,30 @@ const SideBar = () => {
                                        defaultValue={1}
                                        min={1}
                                        max={5}
+                                       onChange={(value) =>
+                                          input.onChange(value)
+                                       }
+                                    ></input>
+                                 )}
+                              />
+                           </div>
+                        )}
+                        { ["6","7","8"].includes(values['filterType']) && (
+                           <div>
+                              <label className='text-white font-semibold block mb-2'>
+                                 Eşik Değeri
+                              </label>
+                              <Field
+                                 defaultValue={0.6}
+                                 name='threshold'
+                                 render={({ input, meta }) => (
+                                    <input
+                                       type={'number'}
+                                       className='bg-gray-700 text-white h-8 w-full rounded px-3'
+                                       defaultValue={0.6}
+                                       min={0.1}
+                                       max={1}
+                                       step={0.05}
                                        onChange={(value) =>
                                           input.onChange(value)
                                        }

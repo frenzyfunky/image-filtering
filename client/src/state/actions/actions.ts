@@ -25,8 +25,8 @@ export interface ApiParameters {
    filterType: FilterType;
    kernelSize: number;
    iterationCount: number;
-   clippedMeanRangeRatio?: number;
    sobelIsVertical?: boolean;
+   threshold?: number;
 }
 
 interface LoadImageAction {
