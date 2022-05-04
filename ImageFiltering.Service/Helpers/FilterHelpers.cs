@@ -14,7 +14,7 @@ namespace ImageFiltering.Service.Helpers
                 for (int j = 0; j < originalImage.Width; j++)
                 {
                     Color pixel = originalImage.GetPixel(j, i);
-                    intensityValues[i, j] = (int)((pixel.R * 0.3) + (pixel.G * 0.4) + (pixel.B * 0.3));
+                    intensityValues[i, j] = (int)((pixel.R * 0.333) + (pixel.G * 0.5) + (pixel.B * 0.1666));
                 }
             }
         }
